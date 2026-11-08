@@ -1,4 +1,5 @@
 #include "VoiceCore.h"
+#include "ConnectionAttempt.h"
 #include <cassert>
 #include <iostream>
 #include <vector>
@@ -32,6 +33,52 @@ struct Rig {
 };
 int main() {
   unsigned cases = 0;
+  {
+    Rig r; r.confirm();
+    assert(r.s.remainingMs(r.time)==30000);
+    assert(r.s.remainingMs(r.time+29999)==1);
+    r.s.pressA(r.time+30000); // No preceding tick: expired confirmations still cannot send.
+    assert(r.posted.empty()); assert(r.s.state==State::Failure); ++cases;
+  }
+  {
+    Rig r; r.listen();
+    assert(r.s.remainingMs(r.time)==15000);
+    assert(r.s.remainingMs(r.time+20000)==0);
+    assert(r.s.state==State::Listening); // Querying the display timer has no side effects.
+    r.s.tick(r.time+20000); assert(r.s.state==State::Failure); ++cases;
+  }
+  {
+    Rig r; r.time=UINT32_MAX-100; r.confirm();
+    assert(r.s.remainingMs(r.time+1000)==29000);
+    r.s.pressA(r.time+30000); assert(r.posted.empty()); ++cases;
+  }
+  {
+    device::ConnectionAttempt c;
+    using Event=device::ConnectionAttempt::Event;
+    assert(c.start(100)); assert(!c.start(1000));
+    assert(c.update(15099,false)==Event::None);
+    assert(c.update(15100,false)==Event::TimedOut);
+    assert(c.update(50000,false)==Event::None); // No automatic retries.
+    assert(c.start(90000));
+    assert(c.update(90001,false)==Event::None); // Retry gets its own full deadline.
+    assert(c.update(104999,false)==Event::None);
+    assert(c.update(105000,false)==Event::TimedOut); ++cases;
+  }
+  {
+    device::ConnectionAttempt c;
+    using Event=device::ConnectionAttempt::Event;
+    assert(c.start(0)); assert(c.update(100,true)==Event::Connected);
+    assert(!c.start(200)); assert(c.update(60000,true)==Event::None);
+    assert(c.update(61000,false)==Event::Disconnected);
+    assert(c.update(100000,false)==Event::None);
+    assert(c.start(100000)); assert(c.update(100100,true)==Event::Connected); ++cases;
+  }
+  {
+    device::ConnectionAttempt c;
+    assert(c.start(UINT32_MAX-100));
+    assert(c.update(14898,false)==device::ConnectionAttempt::Event::None);
+    assert(c.update(14899,false)==device::ConnectionAttempt::Event::TimedOut); ++cases;
+  }
   { Rig r; r.s.begin(r.time); assert(r.s.microphoneMayBeOn()); r.ack("sys"); r.resetDone(); assert(r.s.state==State::Idle); assert(!r.s.microphoneMayBeOn()); ++cases; }
   {
     Framer f; std::string out; std::vector<std::string> got;

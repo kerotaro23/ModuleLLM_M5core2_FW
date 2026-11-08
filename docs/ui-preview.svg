@@ -1,5 +1,5 @@
-<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='520' viewBox='0 0 1000 520'>
-<rect x='0' y='0' width='1000' height='520' rx='0' fill='#09131c'/>
+<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='780' viewBox='0 0 1000 780'>
+<rect x='0' y='0' width='1000' height='780' rx='0' fill='#09131c'/>
 <g transform='translate(10 10)'>
 <rect x='0' y='0' width='320' height='240' rx='0' fill='#101d29'/>
 <text x='10' y='17' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f1f7f5'>けろくろー</text>
@@ -37,8 +37,8 @@
 <text x='40' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>A 話す</text>
 <rect x='112' y='211' width='96' height='25' rx='8' fill='#1c2d3c'/>
 <text x='142' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>B 中止</text>
-<rect x='214' y='211' width='96' height='25' rx='8' fill='#1c2d3c'/>
-<text x='238' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>C 次の頁</text>
+<rect x='214' y='211' width='96' height='25' rx='8' fill='#b9d9eb'/>
+<text x='229' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>C 長押:情報</text>
 </g>
 <g transform='translate(340 10)'>
 <rect x='0' y='0' width='320' height='240' rx='0' fill='#101d29'/>
@@ -64,21 +64,17 @@
 <ellipse cx='51' cy='77' rx='5' ry='7' fill='#15352e'/>
 <text x='108' y='51' font-family='Noto Sans CJK JP, sans-serif' font-size='16' fill='#83e5b0'>聞き取り中</text>
 <text x='108' y='71' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>ゆっくり話してね</text>
-<rect x='109' y='88' width='5' height='13' rx='2' fill='#83e5b0'/>
-<rect x='120' y='92' width='5' height='5' rx='2' fill='#83e5b0'/>
-<rect x='131' y='88' width='5' height='12' rx='2' fill='#83e5b0'/>
-<rect x='142' y='92' width='5' height='4' rx='2' fill='#83e5b0'/>
-<rect x='153' y='89' width='5' height='11' rx='2' fill='#83e5b0'/>
-<rect x='164' y='85' width='5' height='18' rx='2' fill='#83e5b0'/>
-<rect x='175' y='89' width='5' height='10' rx='2' fill='#83e5b0'/>
-<rect x='186' y='86' width='5' height='17' rx='2' fill='#83e5b0'/>
-<rect x='197' y='90' width='5' height='9' rx='2' fill='#83e5b0'/>
-<rect x='208' y='86' width='5' height='16' rx='2' fill='#83e5b0'/>
-<rect x='219' y='90' width='5' height='8' rx='2' fill='#83e5b0'/>
-<rect x='230' y='87' width='5' height='15' rx='2' fill='#83e5b0'/>
-<rect x='241' y='91' width='5' height='7' rx='2' fill='#83e5b0'/>
-<rect x='252' y='87' width='5' height='14' rx='2' fill='#83e5b0'/>
-<rect x='263' y='91' width='5' height='6' rx='2' fill='#83e5b0'/>
+<text x='109' y='94' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#83e5b0'>あと 12 秒</text>
+<rect x='109' y='101' width='180' height='3' rx='1' fill='#1c2d3c'/>
+<rect x='109' y='101' width='144' height='3' rx='1' fill='#83e5b0'/>
+<rect x='212' y='87' width='4' height='6' rx='2' fill='#83e5b0'/>
+<rect x='222' y='84' width='4' height='13' rx='2' fill='#83e5b0'/>
+<rect x='232' y='86' width='4' height='9' rx='2' fill='#83e5b0'/>
+<rect x='242' y='88' width='4' height='5' rx='2' fill='#83e5b0'/>
+<rect x='252' y='84' width='4' height='12' rx='2' fill='#83e5b0'/>
+<rect x='262' y='86' width='4' height='8' rx='2' fill='#83e5b0'/>
+<rect x='272' y='88' width='4' height='4' rx='2' fill='#83e5b0'/>
+<rect x='282' y='85' width='4' height='11' rx='2' fill='#83e5b0'/>
 <rect x='10' y='109' width='300' height='84' rx='10' fill='#1c2d3c'/>
 <text x='20' y='124' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#83e5b0'>MESSAGE</text>
 <text x='270' y='124' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>1 / 1</text>
@@ -89,7 +85,7 @@
 <rect x='112' y='211' width='96' height='25' rx='8' fill='#f5d38a'/>
 <text x='142' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>B 中止</text>
 <rect x='214' y='211' width='96' height='25' rx='8' fill='#1c2d3c'/>
-<text x='238' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>C 次の頁</text>
+<text x='229' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>C 長押:情報</text>
 </g>
 <g transform='translate(670 10)'>
 <rect x='0' y='0' width='320' height='240' rx='0' fill='#101d29'/>
@@ -130,7 +126,7 @@
 <rect x='112' y='211' width='96' height='25' rx='8' fill='#1c2d3c'/>
 <text x='142' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>B 中止</text>
 <rect x='214' y='211' width='96' height='25' rx='8' fill='#1c2d3c'/>
-<text x='238' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>C 次の頁</text>
+<text x='229' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>C 長押:情報</text>
 </g>
 <g transform='translate(10 270)'>
 <rect x='0' y='0' width='320' height='240' rx='0' fill='#101d29'/>
@@ -158,7 +154,9 @@
 <path d='M57 80 L61 76' stroke='#15352e' stroke-width='1.5' fill='none'/>
 <text x='108' y='51' font-family='Noto Sans CJK JP, sans-serif' font-size='16' fill='#f5d38a'>送信していい？</text>
 <text x='108' y='71' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>認識文を確認してね</text>
-<text x='109' y='97' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>KERO VOICE TERMINAL</text>
+<text x='109' y='94' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f5d38a'>あと 24 秒</text>
+<rect x='109' y='101' width='180' height='3' rx='1' fill='#1c2d3c'/>
+<rect x='109' y='101' width='144' height='3' rx='1' fill='#f5d38a'/>
 <rect x='10' y='109' width='300' height='84' rx='10' fill='#1c2d3c'/>
 <text x='20' y='124' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f5d38a'>認識したことば</text>
 <text x='270' y='124' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>1 / 1</text>
@@ -169,7 +167,7 @@
 <rect x='112' y='211' width='96' height='25' rx='8' fill='#f5d38a'/>
 <text x='142' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>B 中止</text>
 <rect x='214' y='211' width='96' height='25' rx='8' fill='#1c2d3c'/>
-<text x='238' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>C 次の頁</text>
+<text x='229' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>C 長押:情報</text>
 </g>
 <g transform='translate(340 270)'>
 <rect x='0' y='0' width='320' height='240' rx='0' fill='#101d29'/>
@@ -208,8 +206,8 @@
 <text x='40' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>A 話す</text>
 <rect x='112' y='211' width='96' height='25' rx='8' fill='#f5d38a'/>
 <text x='142' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>B 中止</text>
-<rect x='214' y='211' width='96' height='25' rx='8' fill='#1c2d3c'/>
-<text x='238' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>C 次の頁</text>
+<rect x='214' y='211' width='96' height='25' rx='8' fill='#b9d9eb'/>
+<text x='229' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>C 長押:情報</text>
 </g>
 <g transform='translate(670 270)'>
 <rect x='0' y='0' width='320' height='240' rx='0' fill='#101d29'/>
@@ -247,7 +245,129 @@
 <text x='40' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>A 話す</text>
 <rect x='112' y='211' width='96' height='25' rx='8' fill='#1c2d3c'/>
 <text x='142' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>B 中止</text>
-<rect x='214' y='211' width='96' height='25' rx='8' fill='#1c2d3c'/>
-<text x='238' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>C 次の頁</text>
+<rect x='214' y='211' width='96' height='25' rx='8' fill='#b9d9eb'/>
+<text x='229' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>C 長押:情報</text>
+</g>
+<g transform='translate(10 530)'>
+<rect x='0' y='0' width='320' height='240' rx='0' fill='#101d29'/>
+<text x='10' y='17' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f1f7f5'>けろくろー</text>
+<ellipse cx='159' cy='12' rx='3' ry='3' fill='#83e5b0'/>
+<text x='168' y='16' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>Wi-Fi OK</text>
+<rect x='242' y='3' width='68' height='19' rx='7' fill='#1c2d3c'/>
+<text x='250' y='16' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#83e5b0'>MIC OFF</text>
+<rect x='0' y='28' width='320' height='78' rx='0' fill='#101d29'/>
+<ellipse cx='51' cy='99' rx='31' ry='4' fill='#223a45'/>
+<ellipse cx='51' cy='85' rx='24' ry='17' fill='#50a985'/>
+<ellipse cx='51' cy='72' rx='36' ry='25' fill='#83e5b0'/>
+<ellipse cx='31' cy='51' rx='15' ry='15' fill='#83e5b0'/>
+<ellipse cx='71' cy='51' rx='15' ry='15' fill='#83e5b0'/>
+<ellipse cx='31' cy='50' rx='10' ry='10' fill='#f1f7f5'/>
+<ellipse cx='71' cy='50' rx='10' ry='10' fill='#f1f7f5'/>
+<ellipse cx='31' cy='51' rx='4' ry='4' fill='#15352e'/>
+<ellipse cx='71' cy='51' rx='4' ry='4' fill='#15352e'/>
+<ellipse cx='32' cy='49' rx='1' ry='1' fill='#f1f7f5'/>
+<ellipse cx='72' cy='49' rx='1' ry='1' fill='#f1f7f5'/>
+<ellipse cx='27' cy='75' rx='6' ry='3' fill='#f2b7ac'/>
+<ellipse cx='75' cy='75' rx='6' ry='3' fill='#f2b7ac'/>
+<path d='M41 76 L45 80' stroke='#15352e' stroke-width='1.5' fill='none'/>
+<path d='M45 80 L57 80' stroke='#15352e' stroke-width='1.5' fill='none'/>
+<path d='M57 80 L61 76' stroke='#15352e' stroke-width='1.5' fill='none'/>
+<text x='108' y='51' font-family='Noto Sans CJK JP, sans-serif' font-size='16' fill='#83e5b0'>ステータス</text>
+<text x='108' y='71' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>接続情報を確認できるよ</text>
+<text x='109' y='97' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>KERO VOICE TERMINAL</text>
+<rect x='10' y='109' width='300' height='84' rx='10' fill='#1c2d3c'/>
+<text x='20' y='124' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#83e5b0'>DEVICE INFO</text>
+<text x='270' y='124' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>1 / 2</text>
+<text x='20' y='141' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f1f7f5'>端末: core2-01</text>
+<text x='20' y='155' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f1f7f5'>Core2 IP: 192.168.1.42</text>
+<text x='20' y='169' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f1f7f5'>電波: -52 dBm</text>
+<text x='20' y='183' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f1f7f5'>Pi設定: 192.168.1.20:8765</text>
+<text x='12' y='206' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>C:次の頁 / 長押しで戻る</text>
+<rect x='10' y='211' width='96' height='25' rx='8' fill='#83e5b0'/>
+<text x='40' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>A 戻る</text>
+<rect x='112' y='211' width='96' height='25' rx='8' fill='#f5d38a'/>
+<text x='127' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>B 戻る/停止</text>
+<rect x='214' y='211' width='96' height='25' rx='8' fill='#b9d9eb'/>
+<text x='238' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>C 次の頁</text>
+</g>
+<g transform='translate(340 530)'>
+<rect x='0' y='0' width='320' height='240' rx='0' fill='#101d29'/>
+<text x='10' y='17' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f1f7f5'>けろくろー</text>
+<ellipse cx='159' cy='12' rx='3' ry='3' fill='#9fb6c5'/>
+<text x='168' y='16' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>OFFLINE</text>
+<rect x='242' y='3' width='68' height='19' rx='7' fill='#1c2d3c'/>
+<text x='250' y='16' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#83e5b0'>MIC OFF</text>
+<rect x='0' y='28' width='320' height='78' rx='0' fill='#101d29'/>
+<ellipse cx='51' cy='99' rx='31' ry='4' fill='#223a45'/>
+<ellipse cx='51' cy='85' rx='24' ry='17' fill='#50a985'/>
+<ellipse cx='51' cy='72' rx='36' ry='25' fill='#83e5b0'/>
+<ellipse cx='31' cy='51' rx='15' ry='15' fill='#83e5b0'/>
+<ellipse cx='71' cy='51' rx='15' ry='15' fill='#83e5b0'/>
+<ellipse cx='31' cy='50' rx='10' ry='10' fill='#f1f7f5'/>
+<ellipse cx='71' cy='50' rx='10' ry='10' fill='#f1f7f5'/>
+<ellipse cx='31' cy='51' rx='4' ry='4' fill='#15352e'/>
+<ellipse cx='71' cy='51' rx='4' ry='4' fill='#15352e'/>
+<ellipse cx='32' cy='49' rx='1' ry='1' fill='#f1f7f5'/>
+<ellipse cx='72' cy='49' rx='1' ry='1' fill='#f1f7f5'/>
+<ellipse cx='27' cy='75' rx='6' ry='3' fill='#f2b7ac'/>
+<ellipse cx='75' cy='75' rx='6' ry='3' fill='#f2b7ac'/>
+<path d='M41 76 L45 80' stroke='#15352e' stroke-width='1.5' fill='none'/>
+<path d='M45 80 L57 80' stroke='#15352e' stroke-width='1.5' fill='none'/>
+<path d='M57 80 L61 76' stroke='#15352e' stroke-width='1.5' fill='none'/>
+<text x='108' y='51' font-family='Noto Sans CJK JP, sans-serif' font-size='16' fill='#83e5b0'>待機</text>
+<text x='108' y='71' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>AでWi-Fiを再接続</text>
+<text x='109' y='97' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>KERO VOICE TERMINAL</text>
+<rect x='10' y='109' width='300' height='84' rx='10' fill='#1c2d3c'/>
+<text x='20' y='124' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#83e5b0'>MESSAGE</text>
+<text x='270' y='124' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>1 / 1</text>
+<text x='20' y='141' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f1f7f5'>Wi-Fiが切れています。Aで再接続できます。C長押</text>
+<text x='20' y='155' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f1f7f5'>しで接続情報を確認してね。</text>
+<text x='12' y='206' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>Wi-Fi未接続 / A:再接続</text>
+<rect x='10' y='211' width='96' height='25' rx='8' fill='#83e5b0'/>
+<text x='34' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>A 再接続</text>
+<rect x='112' y='211' width='96' height='25' rx='8' fill='#1c2d3c'/>
+<text x='142' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>B 中止</text>
+<rect x='214' y='211' width='96' height='25' rx='8' fill='#b9d9eb'/>
+<text x='229' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>C 長押:情報</text>
+</g>
+<g transform='translate(670 530)'>
+<rect x='0' y='0' width='320' height='240' rx='0' fill='#101d29'/>
+<text x='10' y='17' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f1f7f5'>けろくろー</text>
+<ellipse cx='159' cy='12' rx='3' ry='3' fill='#9fb6c5'/>
+<text x='168' y='16' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>OFFLINE</text>
+<rect x='242' y='3' width='68' height='19' rx='7' fill='#1c2d3c'/>
+<text x='250' y='16' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#83e5b0'>MIC OFF</text>
+<rect x='0' y='28' width='320' height='78' rx='0' fill='#101d29'/>
+<ellipse cx='51' cy='99' rx='31' ry='4' fill='#223a45'/>
+<ellipse cx='51' cy='85' rx='24' ry='17' fill='#50a985'/>
+<ellipse cx='51' cy='72' rx='36' ry='25' fill='#83e5b0'/>
+<ellipse cx='31' cy='51' rx='15' ry='15' fill='#83e5b0'/>
+<ellipse cx='71' cy='51' rx='15' ry='15' fill='#83e5b0'/>
+<ellipse cx='31' cy='50' rx='10' ry='10' fill='#f1f7f5'/>
+<ellipse cx='71' cy='50' rx='10' ry='10' fill='#f1f7f5'/>
+<ellipse cx='31' cy='51' rx='4' ry='4' fill='#15352e'/>
+<ellipse cx='71' cy='51' rx='4' ry='4' fill='#15352e'/>
+<ellipse cx='32' cy='49' rx='1' ry='1' fill='#f1f7f5'/>
+<ellipse cx='72' cy='49' rx='1' ry='1' fill='#f1f7f5'/>
+<ellipse cx='27' cy='75' rx='6' ry='3' fill='#f2b7ac'/>
+<ellipse cx='75' cy='75' rx='6' ry='3' fill='#f2b7ac'/>
+<path d='M41 76 L45 80' stroke='#15352e' stroke-width='1.5' fill='none'/>
+<path d='M45 80 L57 80' stroke='#15352e' stroke-width='1.5' fill='none'/>
+<path d='M57 80 L61 76' stroke='#15352e' stroke-width='1.5' fill='none'/>
+<text x='108' y='51' font-family='Noto Sans CJK JP, sans-serif' font-size='16' fill='#83e5b0'>Wi-Fi接続中</text>
+<text x='108' y='71' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>最大15秒待ってね</text>
+<text x='109' y='97' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>KERO VOICE TERMINAL</text>
+<rect x='10' y='109' width='300' height='84' rx='10' fill='#1c2d3c'/>
+<text x='20' y='124' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#83e5b0'>MESSAGE</text>
+<text x='270' y='124' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>1 / 1</text>
+<text x='20' y='141' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f1f7f5'>Wi-Fiに接続中です (最大15秒)。接続後にAで会話</text>
+<text x='20' y='155' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#f1f7f5'>を始めてね。</text>
+<text x='12' y='206' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>Wi-Fi接続中 (最大15秒)</text>
+<rect x='10' y='211' width='96' height='25' rx='8' fill='#1c2d3c'/>
+<text x='34' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>A 再接続</text>
+<rect x='112' y='211' width='96' height='25' rx='8' fill='#1c2d3c'/>
+<text x='142' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#9fb6c5'>B 中止</text>
+<rect x='214' y='211' width='96' height='25' rx='8' fill='#b9d9eb'/>
+<text x='229' y='227' font-family='Noto Sans CJK JP, sans-serif' font-size='12' fill='#15352e'>C 長押:情報</text>
 </g>
 </svg>

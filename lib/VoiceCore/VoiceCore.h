@@ -51,6 +51,13 @@ class Session {
   }
   bool confirming() const { return phase == Phase::Confirm; }
   bool httpPending() const { return phase == Phase::Http; }
+  bool acceptsNewConversation() const {
+    return phase == Phase::Idle || phase == Phase::Spoken || phase == Phase::Failed;
+  }
+  uint32_t remainingMs(uint32_t now) const {
+    const uint32_t elapsed = now - started;
+    return !timeout || elapsed >= timeout ? 0 : timeout - elapsed;
+  }
   void begin(uint32_t now) {
     bootReset = true;
     fault = "起動時のModule停止確認に失敗";
@@ -59,10 +66,12 @@ class Session {
   }
   void pressA(uint32_t now) {
     if (phase == Phase::Confirm) {
+      // Enforce the deadline even if a button event arrives before the next tick.
+      if (!remainingMs(now)) { tick(now); return; }
       set(State::Processing, "Piへ送信中", Phase::Http, now, 15000);
       submit(transcript); return;
     }
-    if (phase != Phase::Idle && phase != Phase::Spoken && phase != Phase::Failed) return;
+    if (!acceptsNewConversation()) return;
     transcript.clear(); reply.clear(); fault.clear(); unsafeStop = false;
     set(State::Processing, "Module LLMを準備中", Phase::ResetAck, now, 5000);
     command("sys", "reset");

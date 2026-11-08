@@ -13,6 +13,8 @@ struct View {
   Mood mood = Mood::Idle;
   bool connected = false, mic = false, configured = false, confirm = false;
   bool canStart = false, canCancel = false;
+  bool reconnect = false, connecting = false, details = false, canInspect = false;
+  int remainingSeconds = -1;
   std::string body, footer;
 };
 inline Color accent(Mood mood) {
@@ -52,9 +54,24 @@ void hero(Surface& s, const View& v, uint32_t frame, int y=28) {
   const char* titles[] = {"待機", "聞き取り中", "処理中", "成功", "失敗"};
   const char* captions[] = {"Aを押して話しかけてね", "ゆっくり話してね", "ちょっと待ってね", "返答が届いたよ", "下の案内を確認してね"};
   const int index = static_cast<int>(v.mood);
-  s.text(v.confirm ? "送信していい？" : titles[index],108,y+9,16,a);
-  s.text(v.confirm ? "認識文を確認してね" : captions[index],108,y+33,12,muted);
-  if (v.mood == Mood::Listening) {
+  const bool network = v.connecting && v.mood == Mood::Idle;
+  s.text(v.details ? "ステータス" : network ? "Wi-Fi接続中" : v.confirm ? "送信していい？" : titles[index],108,y+9,16,a);
+  s.text(v.details ? "接続情報を確認できるよ" : network ? "最大15秒待ってね" :
+         v.reconnect && v.mood == Mood::Idle ? "AでWi-Fiを再接続" :
+         v.confirm ? "認識文を確認してね" : captions[index],108,y+33,12,muted);
+  if (v.remainingSeconds >= 0 && !v.details) {
+    s.text("あと " + std::to_string(v.remainingSeconds) + " 秒",109,y+56,12,a);
+    const int total = v.confirm ? 30 : 15;
+    s.round(109,y+73,180,3,1,panel);
+    const int width = 180 * std::min(total, v.remainingSeconds) / total;
+    if (width) s.round(109,y+73,width,3,1,a);
+    if (v.mood == Mood::Listening) {
+      for (int i=0;i<8;++i) {
+        const int h=4+((frame*3+i*7)%11);
+        s.round(212+i*10,y+62-h/2,4,h,2,green);
+      }
+    }
+  } else if (v.mood == Mood::Listening) {
     // Decorative listening activity, not a measured microphone waveform.
     for (int i=0;i<15;++i) {
       int h=4+((frame*3+i*7)%15);
@@ -100,14 +117,14 @@ unsigned render(Surface& s,const View& v,unsigned& page,uint32_t frame) {
   auto lines=wrap(s,v.body);
   const unsigned pages=std::max(1U,(static_cast<unsigned>(lines.size())+3)/4);
   page%=pages;
-  s.text(v.confirm?"認識したことば":!v.configured?"セットアップ":"MESSAGE",20,114,12,accent(v.mood));
+  s.text(v.details?"DEVICE INFO":v.confirm?"認識したことば":!v.configured?"セットアップ":"MESSAGE",20,114,12,accent(v.mood));
   std::string counter=std::to_string(page+1)+" / "+std::to_string(pages);
   s.text(counter,300-s.width(counter,12),114,12,muted);
   for(unsigned i=0;i<4&&page*4+i<lines.size();++i) s.text(lines[page*4+i],20,131+i*14,12,white);
   s.text(v.footer,12,196,12,muted);
-  button(s,10,v.confirm?"A 送信する":"A 話す",v.canStart,green);
-  button(s,112,"B 中止",v.canCancel,yellow);
-  button(s,214,"C 次の頁",pages>1,0xB9D9EB);
+  button(s,10,v.details?"A 戻る":v.reconnect?"A 再接続":v.confirm?"A 送信する":"A 話す",v.details||v.canStart,green);
+  button(s,112,v.details?"B 戻る/停止":"B 中止",v.details||v.canCancel,yellow);
+  button(s,214,pages>1?"C 次の頁":"C 長押:情報",pages>1||v.canInspect,0xB9D9EB);
   return pages;
 }
 } // namespace terminal_ui
