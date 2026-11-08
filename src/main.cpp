@@ -4,7 +4,7 @@
 #include <esp_system.h>
 #include "config.h"
 #include "VoiceCore.h"
-#include <vector>
+#include "TerminalUi.h"
 
 namespace {
 voice::Session session;
@@ -70,48 +70,57 @@ void bridgeTask(void*) {
   }
 }
 
-std::vector<String> wrap(const std::string& text) {
-  std::vector<String> lines;
-  String line;
-  for (size_t i = 0; i < text.size();) {
-    unsigned char c = text[i];
-    size_t len = c < 0x80 ? 1 : (c < 0xe0 ? 2 : (c < 0xf0 ? 3 : 4));
-    len = std::min(len, text.size() - i);
-    String glyph(text.substr(i, len).c_str()); i += len;
-    if (c == '\n') { lines.push_back(line); line = ""; continue; }
-    if (M5.Display.textWidth(line + glyph) > 300) { lines.push_back(line); line = ""; }
-    line += glyph;
+M5Canvas screen(&M5.Display), character(&M5.Display);
+bool bufferedUi = false;
+uint32_t animationAt = 0, animationFrame = 0;
+terminal_ui::View view;
+
+struct Surface {
+  lgfx::LGFXBase& canvas;
+  void rect(int x,int y,int w,int h,uint32_t c) { canvas.fillRect(x,y,w,h,c); }
+  void round(int x,int y,int w,int h,int r,uint32_t c) { canvas.fillRoundRect(x,y,w,h,r,c); }
+  void circle(int x,int y,int r,uint32_t c) { canvas.fillCircle(x,y,r,c); }
+  void ellipse(int x,int y,int rx,int ry,uint32_t c) { canvas.fillEllipse(x,y,rx,ry,c); }
+  void line(int x,int y,int x2,int y2,uint32_t c) { canvas.drawLine(x,y,x2,y2,c); }
+  void font(int size) { canvas.setFont(size==16?&fonts::efontJA_16:&fonts::efontJA_12); }
+  int width(const std::string& str,int size) { font(size); return canvas.textWidth(str.c_str()); }
+  void text(const std::string& str,int x,int y,int size,uint32_t c) {
+    font(size); canvas.setTextColor(c); canvas.setCursor(x,y); canvas.print(str.c_str());
   }
-  if (line.length()) lines.push_back(line);
-  return lines;
-}
+};
 void draw() {
-  const char* labels[] = {"待機", "聞き取り中", "処理中", "成功", "失敗"};
-  const uint16_t colors[] = {TFT_CYAN, TFT_YELLOW, TFT_ORANGE, TFT_GREEN, TFT_RED};
-  M5.Display.fillScreen(TFT_BLACK);
-  M5.Display.setFont(&fonts::efontJA_16);
-  M5.Display.setTextColor(colors[static_cast<int>(session.state)]);
-  M5.Display.setCursor(8, 4);
-  M5.Display.printf("%s  MIC:%s", labels[static_cast<int>(session.state)], session.microphoneMayBeOn() ? "ON/確認中" : "OFF");
-  M5.Display.setFont(&fonts::efontJA_12);
-  M5.Display.setTextColor(TFT_LIGHTGREY);
-  M5.Display.setCursor(8, 28);
-  if (WiFi.status() == WL_CONNECTED) M5.Display.printf("Wi-Fi: %s", WiFi.localIP().toString().c_str());
-  else M5.Display.print(wifiExpired ? "Wi-Fi接続失敗 (設定確認後に再起動)" : "Wi-Fi接続中");
-  std::string body = configured ? session.message : "未設定: include/secrets.h を設定し書き込んでください";
-  if (!session.version.empty()) body += "\nModule FW: " + session.version;
-  if (!session.transcript.empty()) body += "\n認識: " + session.transcript;
-  if (!session.reply.empty()) body += "\n返答: " + session.reply;
-  auto lines = wrap(body);
-  const unsigned pages = std::max(1U, (static_cast<unsigned>(lines.size()) + 8) / 9);
-  page %= pages;
-  M5.Display.setTextColor(TFT_WHITE);
-  for (unsigned i = 0; i < 9 && page * 9 + i < lines.size(); ++i) {
-    M5.Display.setCursor(8, 50 + i * 17);
-    M5.Display.print(lines[page * 9 + i]);
-  }
-  M5.Display.setCursor(8, 215);
-  M5.Display.printf("A:開始/確認  B:中止  C:頁 %u/%u", page + 1, pages);
+  view.mood = static_cast<terminal_ui::Mood>(session.state);
+  view.connected = WiFi.status()==WL_CONNECTED;
+  view.mic = session.microphoneMayBeOn();
+  view.configured = configured;
+  view.confirm = session.confirming();
+  const auto phase = session.phase;
+  view.canStart = configured && view.connected && (view.confirm || phase==voice::Phase::Idle ||
+                  phase==voice::Phase::Spoken || phase==voice::Phase::Failed);
+  view.canCancel = phase!=voice::Phase::Http && phase!=voice::Phase::Idle &&
+                   phase!=voice::Phase::FaultAck && phase!=voice::Phase::FaultDone && phase!=voice::Phase::Failed;
+  // Keep failure/stop warnings visible even when credentials are not configured.
+  if(session.state==voice::State::Failure) view.body=session.message;
+  else if(!configured) view.body="Wi-FiとPiの接続設定を入れてね。設定方法はREADMEを見てね。";
+  else if(view.confirm) view.body=session.transcript;
+  else if(!session.reply.empty()) view.body=session.reply+"\n"+session.message;
+  else if(phase==voice::Phase::Idle) view.body="こんにちは！予定や天気、メモのお手伝いをするよ。Aを押してね。";
+  else view.body=session.message;
+  if(!view.confirm && !session.transcript.empty()) view.body+="\n認識: "+session.transcript;
+  if(session.state==voice::State::Failure && !session.reply.empty()) view.body+="\n返答: "+session.reply;
+  if(!session.version.empty()) view.body+="\nModule FW: "+session.version;
+  view.footer = view.mic ? "マイク動作中 / 停止確認中" : view.connected ? WiFi.localIP().toString().c_str() :
+                !configured ? "接続設定が必要です" : wifiExpired ? "Wi-Fi接続失敗 / 再起動してね" : "Wi-Fiに接続しています";
+  Surface surface{bufferedUi?static_cast<lgfx::LGFXBase&>(screen):static_cast<lgfx::LGFXBase&>(M5.Display)};
+  terminal_ui::render(surface,view,page,animationFrame);
+  if(bufferedUi) screen.pushSprite(0,0);
+}
+void animate(uint32_t now) {
+  if(!bufferedUi || uint32_t(now-animationAt)<125) return;
+  animationAt=now; ++animationFrame;
+  Surface surface{character};
+  terminal_ui::hero(surface,view,animationFrame,0);
+  character.pushSprite(0,28);
 }
 }
 
@@ -120,6 +129,11 @@ void setup() {
   cfg.internal_mic = false; // Avoid Core2 I2S/UART pin contention; use Module LLM's microphone.
   cfg.internal_spk = true;
   M5.begin(cfg);
+  screen.setColorDepth(16); character.setColorDepth(16);
+  // Reserve internal RAM for Wi-Fi, UART and the HTTP worker.
+  screen.setPsram(true); character.setPsram(true);
+  bufferedUi = psramFound() && screen.createSprite(320,240) && character.createSprite(320,78);
+  if(!bufferedUi) { screen.deleteSprite(); character.deleteSprite(); }
   Serial.begin(115200);
   Serial2.setRxBufferSize(16384);
   Serial2.begin(115200, SERIAL_8N1, kModuleRx, kModuleTx);
@@ -183,5 +197,6 @@ void loop() {
     if (session.phase == voice::Phase::Failed) M5.Speaker.tone(300, 180);
     if (session.phase == voice::Phase::Spoken) M5.Speaker.tone(1800, 80);
   }
+  animate(now);
   delay(2);
 }
